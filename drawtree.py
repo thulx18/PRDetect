@@ -16,13 +16,13 @@ def drawtree(text, output="tree"):
     nodes = list()
     for _, word in enumerate(doc):
         nodes.append(str(word))
-        if word.i == word.head.i or str(word) == " ":
+        if word.i == word.head.i or str(word).isspace():
             continue
         node_relations.append([word.i,word.head.i])
 
     dot = Digraph()
     for i in range(len(nodes)):
-        if nodes[i] == " ":
+        if nodes[i].isspace():
             continue
         dot.node(str(i),nodes[i])
     for edge in node_relations:
