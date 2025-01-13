@@ -1,0 +1,8 @@
+log/
+roberta-base/
+gpt2-detector/
+*.pth
+*.jpg
+*.png
+
+
