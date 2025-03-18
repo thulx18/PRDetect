@@ -152,3 +152,8 @@ hc3_test_llama3_8b_instruct_rewrite	 acc: 0.7134268537074149	 auc: 0.83463478903
 gpt3.5_mixed_test_llama3_8b_instruct_rewrite	 acc: 0.927	 auc: 0.966278	 f1: 0.9304099142040038	 seed: 2024	 model: gpt3.5	2025-02-18 18:05:11.751665
 hc3_test_translate	 acc: 0.778	 auc: 0.8631102878814549	 f1: 0.8	 seed: 2024	 model: gpt3.5	2025-02-18 18:05:20.702125
 gpt3.5_test_translate	 acc: 0.695	 auc: 0.728606	 f1: 0.761904761904762	 seed: 2024	 model: gpt3.5	2025-02-18 18:05:29.173936
+hc3_test	 acc: 0.986	 auc: 0.9970315725464467	 f1: 0.9862475442043221	 seed: 2024	 model: hc3	2025-03-10 18:09:21.446778
+hc3_test_adj_10_synonym_replace	 acc: 0.983	 auc: 0.9969435598726217	 f1: 0.9833496571988246	 seed: 2024	 model: hc3	2025-03-10 18:09:59.570246
+hc3_test_adj_5_synonym_replace	 acc: 0.984	 auc: 0.9969915667856171	 f1: 0.984313725490196	 seed: 2024	 model: hc3	2025-03-10 18:10:11.009970
+hc3_test_adj_20_synonym_replace	 acc: 0.984	 auc: 0.9966915235793954	 f1: 0.984313725490196	 seed: 2024	 model: hc3	2025-03-10 18:10:20.730347
+hc3_test_adj_30_synonym_replace	 acc: 0.982	 auc: 0.9966595189707318	 f1: 0.9823874755381605	 seed: 2024	 model: hc3	2025-03-10 18:10:29.014222
