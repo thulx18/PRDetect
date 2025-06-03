@@ -16,11 +16,13 @@ tokenizer = RobertaTokenizer("./roberta-base/vocab.json", "./roberta-base/merges
 vocab_size = len(tokenizer)
 
 def build_graph(json_texts):
+    start_time = time.time()
     texts = list()
     y = list()
     for json_text in json_texts:
-        texts.append(json.loads(json_text['text']))
-        y.append(1 if json.loads(json_text['label'])=="hc3human" else 0)
+        texts.append(json.loads(json_text)['text'])
+        label = 1 if "human" in json.loads(json_text)['label'] else 0
+        y.append(label)
     y = torch.tensor(y, dtype=torch.float32)
     tokenized_sentences = list()
     all_token_embeddings = list()
@@ -38,7 +40,7 @@ def build_graph(json_texts):
             chunk_outputs = []
             for chunk in chunks:
                 token_ids = tokenizer.convert_tokens_to_ids(chunk)
-                input_ids = torch.tensor(token_ids).unsqueeze(0)
+                input_ids = torch.tensor(token_ids).unsqueeze(0).to(device)
                 with torch.no_grad():
                     output = model(input_ids)
 
@@ -50,7 +52,7 @@ def build_graph(json_texts):
             # print(len(tokenized_sentence))
             # print(token_embeddings.shape)
             node_relations = list()
-            for i,word in enumerate(doc):        
+            for word in doc:        
                 node_relations.append([word.i,word.head.i])
                 # 加上自环
                 # if word.i != word.head.i:
@@ -69,4 +71,30 @@ def build_graph(json_texts):
         except Exception as e:
             print(text)
             print(e)
-    return all_token_embeddings, edge_index, y
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"运行时间: {elapsed_time} 秒")
+    return all_token_embeddings, all_edge_index, y
+
+def read_json(file_name):
+    texts = list()
+    with open(f"original_text/{file_name}.json", "r", encoding="utf-8") as f:
+        for line in f.readlines():
+            texts.append(line)
+    return texts
+
+def save_pkl(file_name, all_token_embeddings, all_edge_index, y):
+    with open(f"/root/autodl-tmp/graph_data/{file_name}.pkl", "wb") as f:
+        pickle.dump({"all_token_embeddings": all_token_embeddings,
+                     "all_edge_index": all_edge_index,
+                     "y": y}, f)
+
+if __name__ == '__main__':
+    files = [
+        "hc3_train",
+        "hc3_val",
+        "hc3_test"
+    ]
+    for file in files:
+        all_token_embeddings, all_edge_index, y = build_graph(read_json(file))
+        save_pkl(file, all_token_embeddings, all_edge_index, y)

@@ -1,0 +1,30 @@
+datasets==2.13.0
+huggingface-hub==0.20.1
+jieba==0.42.1
+lxml==4.9.3
+nltk==3.8.1
+numpy==1.22.4
+pandas==2.0.3
+pickleshare==0.7.5
+pytorch-lightning==2.1.0rc0
+regex==2023.8.8
+requests==2.31.0
+scikit-learn==1.3.1
+scipy==1.10.1
+seaborn==0.13.0
+spacy==3.7.4
+spacy-legacy==3.0.12
+spacy-loggers==1.0.5
+spacy-pkuseg==0.0.33
+tensorboard==2.9.1
+tensorboard-data-server==0.6.1
+tensorboard-plugin-wit==1.8.1
+torch @ http://download.pytorch.org/whl/cu113/torch-1.11.0%2Bcu113-cp38-cp38-linux_x86_64.whl
+torch-geometric==2.5.2
+torch-scatter
+torch-sparse
+torchmetrics==1.2.0
+torchvision @ http://download.pytorch.org/whl/cu113/torchvision-0.12.0%2Bcu113-cp38-cp38-linux_x86_64.whl
+tqdm==4.66.1
+transformers==4.40.0
+transformers-stream-generator==0.0.4
